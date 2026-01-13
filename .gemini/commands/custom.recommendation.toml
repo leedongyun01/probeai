@@ -1,0 +1,8 @@
+description = "Analyze codebase and PRD to generate spec-kit recommendations"
+
+prompt = """
+1. Comprehensive Analysis: Scan and understand the entire current codebase including the project structure, components, and state management logic.
+2. PRD Reference: Thoroughly review the 'docs/prd.md' file to align with the project goals, core principles, and technical constraints.
+3. Generate Recommendations: Based on the "Spec-Kit" methodology, identify 5 high-priority areas that require detailed specification (e.g., Export Logic, D&D Management, Theming System, etc.).
+4. File Output: Write the final 5 recommendations into a new file named 'docs/recommendation.md' with clear justifications ("Why") and specific technical requirements ("What to Specify") for each.
+"""

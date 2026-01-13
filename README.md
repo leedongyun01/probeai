@@ -16,7 +16,28 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Design System
+
+ProbeAI includes a built-in design system showcase. You can view it at:
+[http://localhost:3000/design-system](http://localhost:3000/design-system)
+
+This page demonstrates our core components (Button, Input, Card, Dialog) and theme tokens.
+
+## Development
+
+### Testing
+
+Run the test suite with:
+```bash
+npm test
+```
+
+### Linting
+
+Run linting with:
+```bash
+npm run lint
+```
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
