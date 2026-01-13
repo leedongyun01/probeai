@@ -69,7 +69,19 @@ Examples of foundational tasks (adjust based on your project):
 - [ ] T008 Configure error handling and logging infrastructure
 - [ ] T009 Setup environment configuration management
 
-**Checkpoint**: Foundation ready - user story implementation can now begin in parallel
+---
+
+## Phase 3: Agent Logic & Orchestration (Research Core)
+
+**Purpose**: Implementation of the agentic core, including prompts and state management
+
+- [ ] T010 [P] Define LangGraph state schema for research workflow
+- [ ] T011 [P] Implement core prompt templates for Analyzer/Researcher
+- [ ] T012 Setup Tavily AI search tool integration
+- [ ] T013 Implement citation mapping logic (Constitution Principle II)
+- [ ] T014 Configure LLM structured output validation (Zod)
+
+**Checkpoint**: Agent core ready - UI and user stories can now integrate with agent logic
 
 ---
 

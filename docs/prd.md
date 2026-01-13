@@ -31,7 +31,7 @@ Frontend: Next.js 14+ (App Router), Tailwind CSS, Shadcn UI.
 
 Agent Orchestration: LangGraph (State management for agents).
 
-AI Model: Gemini 1.5 Pro (via Google Generative AI SDK).
+AI Model: Gemini 2.5 Flash Lite (via Google Generative AI SDK).
 
 Search Engine: Tavily AI API (Agent-optimized search).
 

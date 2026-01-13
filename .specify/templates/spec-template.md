@@ -86,9 +86,11 @@
 
 - **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
 - **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]  
-- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
-- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
-- **FR-005**: System MUST [behavior, e.g., "log all security events"]
+
+#### Agentic & Data Requirements (Constitution Alignment)
+- **FR-AG-001**: Agents MUST [Autonomy rule: e.g., "execute multi-step research autonomously"]
+- **FR-AG-002**: System MUST [Verifiability rule: e.g., "map every claim to a source citation"]
+- **FR-AG-003**: System MUST [Synthesis rule: e.g., "generate Mermaid charts for structural data"]
 
 *Example of marking unclear requirements:*
 

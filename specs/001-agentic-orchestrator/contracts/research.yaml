@@ -1,0 +1,88 @@
+openapi: 3.0.0
+info:
+  title: ProbeAI Research API
+  version: 1.0.0
+paths:
+  /api/research/start:
+    post:
+      summary: Start a new research session
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - query
+                - mode
+              properties:
+                query:
+                  type: string
+                mode:
+                  type: string
+                  enum: [quick_scan, deep_probe]
+      responses:
+        '201':
+          description: Session created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sessionId:
+                    type: string
+
+  /api/research/{sessionId}:
+    get:
+      summary: Get the current status and results of a research session
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Session state
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResearchSession'
+
+  /api/research/{sessionId}/stream:
+    get:
+      summary: Stream real-time status updates via Server-Sent Events (SSE)
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: SSE stream of status updates
+
+components:
+  schemas:
+    ResearchSession:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        report:
+          type: string
+        citations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Citation'
+    Citation:
+      type: object
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        snippet:
+          type: string
