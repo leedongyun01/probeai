@@ -1,22 +1,52 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Features
+
+### Agentic Research Orchestrator
+A multi-agent research system built with LangGraph and Gemini 2.5 Flash Lite.
+- **Quick Scan**: Rapid summaries with verified citations using Tavily.
+- **Deep Probe**: Iterative, multi-step investigation for complex topics.
+- **Real-time Tracking**: Live visibility into agent state transitions via Server-Sent Events.
+- **Absolute Verifiability**: Mandatory citation mapping for all claims.
+
 ## Getting Started
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+1. Set up environment variables in `.env.local`:
+```text
+TAVILY_API_KEY=your_key
+GEMINI_API_KEY=your_key
+DATABASE_URL=file:./dev.db
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Run the development server:
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Start researching at `http://localhost:3000`.
+
+## Design System
+
+ProbeAI includes a built-in design system showcase. You can view it at:
+[http://localhost:3000/design-system](http://localhost:3000/design-system)
+
+This page demonstrates our core components (Button, Input, Card, Dialog) and theme tokens.
+
+## Development
+
+### Testing
+
+Run the test suite with:
+```bash
+npm test
+```
+
+### Linting
+
+Run linting with:
+```bash
+npm run lint
+```
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
