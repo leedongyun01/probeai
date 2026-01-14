@@ -1,19 +1,16 @@
 <!--
 SYNC IMPACT REPORT
-Version change: 1.0.0 -> 1.1.0
+Version change: 1.1.0 -> 1.2.0
 Modified principles:
-- Component-Driven UI -> Refined for Next.js 19/React 19 conventions
-- Type Safety -> Enhanced for AI structured outputs
-Added sections:
-- AI Ethics & Agentic Principles (Autonomy, Verifiability, Synthesis)
-Removed sections:
 - None
+Added sections:
+- VI. Design System Adherence ("Mission Control")
 Templates requiring updates:
 - .specify/templates/plan-template.md (✅ updated)
 - .specify/templates/spec-template.md (✅ updated)
 - .specify/templates/tasks-template.md (✅ updated)
 Follow-up TODOs:
-- Define specific citation format standards in SECTION_I.
+- None
 -->
 # ProbeAI Constitution
 
@@ -33,6 +30,9 @@ UI MUST be built using atomic, reusable components (Shadcn UI/Tailwind 4). Separ
 
 ### V. Strict Type Safety & Validation
 TypeScript 5+ is mandatory. `any` is forbidden. Interaction with LLMs (Gemini) MUST use structured output validation (e.g., Zod) to ensure system stability.
+
+### VI. Design System Adherence ("Mission Control")
+All UI/UX development MUST strictly adhere to the "Mission Control" design system defined in `docs/design-system.md`. This includes the usage of the "Dark/Data-Dense" aesthetic, `JetBrains Mono` for data, and specific color palettes. Deviations must be explicitly justified.
 
 ## Technical Standards
 
@@ -54,4 +54,4 @@ TypeScript 5+ is mandatory. `any` is forbidden. Interaction with LLMs (Gemini) M
 
 Amendments to this constitution require a MINOR version bump. Backward-incompatible changes to agent behavior or data integrity rules require a MAJOR bump.
 
-**Version**: 1.1.0 | **Ratified**: 2026-01-13 | **Last Amended**: 2026-01-13
+**Version**: 1.2.0 | **Ratified**: 2026-01-13 | **Last Amended**: 2026-01-14

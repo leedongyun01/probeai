@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Search, Sparkles } from 'lucide-react';
+import { Terminal, Activity } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -35,70 +35,94 @@ export default function ResearchPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-10rem)] w-full max-w-3xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="flex flex-col items-center justify-center min-h-[calc(100vh-10rem)] w-full max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground/90">
-          무엇을 <span className="text-primary">탐색</span>하고 싶으신가요?
+      <div className="text-center space-y-2">
+        <div className="inline-flex items-center gap-2 rounded border border-green-500/20 bg-green-500/10 px-3 py-1 text-xs font-mono font-medium text-green-500 mb-4">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+          </span>
+          SYSTEM ONLINE
+        </div>
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground">
+          PROBE<span className="text-blue-500">AI</span>
         </h1>
-        <p className="text-muted-foreground text-lg">
-          복잡한 조사를 단순하게. 주제를 입력하세요.
+        <p className="text-muted-foreground font-mono text-sm uppercase tracking-widest">
+          Advanced Research & Analysis Terminal
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="w-full space-y-6">
-        <div className="relative group">
-            <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl blur-lg -z-10" />
+      <div className="w-full rounded-lg border border-slate-800 bg-slate-900/70 backdrop-blur-md p-6 md:p-8 shadow-2xl">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="space-y-2">
+            <label className="text-xs font-mono text-slate-400 uppercase tracking-wider">Target Objective</label>
             <textarea
                 className={cn(
-                "flex w-full rounded-xl border border-input bg-background/50 px-4 py-4 text-lg shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 resize-none min-h-[120px]",
-                "hover:border-primary/50"
+                "flex w-full rounded bg-slate-950/50 border border-slate-800 px-4 py-4 font-mono text-sm text-foreground placeholder:text-slate-600 focus:border-blue-500 focus:outline-none resize-none min-h-[100px] transition-all",
+                "hover:border-slate-700 focus:ring-1 focus:ring-blue-500/20"
                 )}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="예: 전기차 전고체 배터리의 미래..."
+                placeholder="> Enter research topic or query..."
                 required
             />
-        </div>
-
-        <div className="flex flex-col sm:flex-row gap-4">
-          <div className="relative flex-1">
-             <select
-                className={cn(
-                  "flex h-12 w-full rounded-lg border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
-                  "appearance-none cursor-pointer"
-                )}
-                value={mode}
-                onChange={(e) => setMode(e.target.value as 'quick_scan' | 'deep_probe')}
-             >
-                <option value="quick_scan">⚡ 빠른 스캔 (요약 개요)</option>
-                <option value="deep_probe">🔍 심층 탐구 (포괄적 분석)</option>
-             </select>
-             <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
-             </div>
           </div>
 
-          <Button 
-            type="submit" 
-            disabled={loading}
-            size="lg"
-            className="h-12 px-8 text-base shadow-md hover:shadow-lg transition-all"
-          >
-            {loading ? (
-                <>
-                    <Sparkles className="mr-2 h-5 w-5 animate-spin" />
-                    분석 중...
-                </>
-            ) : (
-                <>
-                    <Search className="mr-2 h-5 w-5" />
-                    조사 시작
-                </>
-            )}
-          </Button>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+             <div className="space-y-2">
+               <label className="text-xs font-mono text-slate-400 uppercase tracking-wider">Operation Mode</label>
+               <div className="relative">
+                 <select
+                    className={cn(
+                      "flex h-10 w-full rounded bg-slate-950/50 border border-slate-800 px-3 py-2 font-mono text-sm text-foreground focus:border-blue-500 focus:outline-none appearance-none cursor-pointer hover:border-slate-700 transition-colors"
+                    )}
+                    value={mode}
+                    onChange={(e) => setMode(e.target.value as 'quick_scan' | 'deep_probe')}
+                 >
+                    <option value="quick_scan">QUICK SCAN [Fast]</option>
+                    <option value="deep_probe">DEEP PROBE [Comprehensive]</option>
+                 </select>
+                 <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                    <Activity className="h-4 w-4" />
+                 </div>
+               </div>
+             </div>
+             
+             <div className="flex items-end">
+                <Button 
+                  type="submit" 
+                  disabled={loading}
+                  className="w-full h-10 rounded bg-blue-600 hover:bg-blue-500 text-white font-semibold uppercase tracking-wider text-xs transition-all shadow-[0_0_10px_rgba(37,99,235,0.2)] hover:shadow-[0_0_20px_rgba(37,99,235,0.4)]"
+                >
+                  {loading ? (
+                      <>
+                          <span className="animate-spin mr-2">/</span>
+                          INITIALIZING...
+                      </>
+                  ) : (
+                      <>
+                          <Terminal className="mr-2 h-4 w-4" />
+                          INITIALIZE SEQUENCE
+                      </>
+                  )}
+                </Button>
+             </div>
+          </div>
+        </form>
+      </div>
+      
+      <div className="flex gap-8 text-xs font-mono text-slate-600">
+        <div className="flex items-center gap-2">
+            <div className="h-1.5 w-1.5 rounded-full bg-slate-600"></div>
+            <span>READY FOR INPUT</span>
         </div>
-      </form>
+        <div className="flex items-center gap-2">
+            <div className="h-1.5 w-1.5 rounded-full bg-slate-600"></div>
+            <span>V2.5 FLASH LITE</span>
+        </div>
+      </div>
+
     </div>
   );
 }

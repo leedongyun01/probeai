@@ -31,7 +31,12 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+*   [ ] **Agentic Autonomy**: Does this feature support autonomous execution?
+*   [ ] **Verifiability**: Are citations maintained for all claims?
+*   [ ] **Visual Synthesis**: Is structured data visualized (Mermaid/Tables)?
+*   [ ] **Component UI**: Are we using reusable components (React 19)?
+*   [ ] **Type Safety**: Is strict TypeScript/Zod validation applied?
+*   [ ] **Design System**: Does the UI adhere to `docs/design-system.md` ("Mission Control")?
 
 ## Project Structure
 
