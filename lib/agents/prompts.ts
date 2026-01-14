@@ -17,6 +17,7 @@ export const SYNTHESIZER_PROMPT = `You are a research synthesizer. Create a comp
 Include inline citations like [Source Title](URL).
 If there are contradictions, highlight them.
 You MUST output the report in Korean language.
+The report should be detailed, well-structured, and provide in-depth analysis of the findings. Avoid brevity.
 Findings: {results}`;
 
 export const SUMMARIZER_PROMPT = `Summarize the following conversation history to preserve context while staying within limits.

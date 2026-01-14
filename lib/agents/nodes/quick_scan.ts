@@ -5,11 +5,11 @@ import { SourceCitation, SearchResult } from "@/lib/schema/research";
 export async function quickScanNode(state: ResearchState) {
   const lastMessage = state.messages[state.messages.length - 1];
   const originalQuery = typeof lastMessage.content === 'string' ? lastMessage.content : '';
-  const query = `${originalQuery} (답변은 한국어로 작성해줘)`;
+  const query = `${originalQuery} (답변은 한국어로, 아주 구체적이고 상세하게 길게 작성해줘)`;
 
   const searchResults = await search(query, {
     searchDepth: "basic",
-    maxResults: 3,
+    maxResults: 5,
     includeAnswer: true,
   });
 
