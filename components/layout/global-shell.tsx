@@ -28,8 +28,8 @@ export function GlobalShell({ children }: GlobalShellProps) {
         {children}
       </main>
 
-      {/* Bottom-Left Theme Toggle */}
-      <div className="fixed bottom-0 left-0 z-50 p-6">
+      {/* Bottom-Right Theme Toggle */}
+      <div className="fixed bottom-0 right-0 z-50 p-6">
         <ModeToggle />
       </div>
     </div>

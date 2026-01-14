@@ -9,13 +9,13 @@ export default function SessionPage({ params }: { params: Promise<{ sessionId: s
   const { sessionId } = use(params);
   const { data, error } = useResearchStream(sessionId);
 
-  if (error) return <div className="p-8 text-center text-destructive">Error: {error}</div>;
-  if (!data) return <div className="p-8 text-center text-muted-foreground animate-pulse">Connecting to research session...</div>;
+  if (error) return <div className="p-8 text-center text-destructive">오류: {error}</div>;
+  if (!data) return <div className="p-8 text-center text-muted-foreground animate-pulse">조사 세션에 연결 중...</div>;
 
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
       <header className="border-b border-border pb-6">
-        <h1 className="text-3xl font-bold text-foreground">Research Report</h1>
+        <h1 className="text-3xl font-bold text-foreground">조사 보고서</h1>
         <p className="text-sm text-muted-foreground mt-1 font-mono">ID: {sessionId}</p>
       </header>
 

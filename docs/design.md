@@ -57,7 +57,7 @@ A persistent header bar across all pages.
 The application supports both Light and Dark modes to accommodate user preference and environment.
 
 - **Theme Toggle Button:**
-  - **Position:** Bottom-Left corner (Fixed).
+  - **Position:** Bottom-Right corner (Fixed).
   - **Interaction:** Single click to toggle between Light and Dark modes.
   - **Visual:** Minimalist icon representing the current or target state (e.g., Sun/Moon).
 

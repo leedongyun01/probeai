@@ -13,12 +13,12 @@ export function StatusDashboard({ mode, currentStep, plan, status }: StatusDashb
     <div className="bg-card text-card-foreground p-6 rounded-xl border border-border mb-8 shadow-sm">
       <div className="flex justify-between items-center mb-4">
         <div>
-          <h3 className="text-lg font-bold capitalize">{mode.replace('_', ' ')} Mode</h3>
-          <p className="text-sm text-muted-foreground">Status: <span className="text-primary font-medium">{status}</span></p>
+          <h3 className="text-lg font-bold capitalize">{mode === 'quick_scan' ? '빠른 스캔' : '심층 탐구'} 모드</h3>
+          <p className="text-sm text-muted-foreground">상태: <span className="text-primary font-medium">{status === 'Completed' ? '완료됨' : '진행 중'}</span></p>
         </div>
         {totalSteps > 0 && (
           <div className="text-right">
-            <span className="text-sm font-bold">{currentStep} / {totalSteps} Steps</span>
+            <span className="text-sm font-bold">{currentStep} / {totalSteps} 단계</span>
           </div>
         )}
       </div>

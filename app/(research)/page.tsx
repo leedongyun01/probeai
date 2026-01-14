@@ -39,10 +39,10 @@ export default function ResearchPage() {
       
       <div className="text-center space-y-4">
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground/90">
-          What do you want to <span className="text-primary">discover</span>?
+          무엇을 <span className="text-primary">탐색</span>하고 싶으신가요?
         </h1>
         <p className="text-muted-foreground text-lg">
-          Deep research, simplified. Enter your topic below.
+          복잡한 조사를 단순하게. 주제를 입력하세요.
         </p>
       </div>
 
@@ -56,7 +56,7 @@ export default function ResearchPage() {
                 )}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="e.g., The future of solid-state batteries in EVs..."
+                placeholder="예: 전기차 전고체 배터리의 미래..."
                 required
             />
         </div>
@@ -71,8 +71,8 @@ export default function ResearchPage() {
                 value={mode}
                 onChange={(e) => setMode(e.target.value as 'quick_scan' | 'deep_probe')}
              >
-                <option value="quick_scan">⚡ Quick Scan (Fast Overview)</option>
-                <option value="deep_probe">🔍 Deep Probe (Comprehensive)</option>
+                <option value="quick_scan">⚡ 빠른 스캔 (요약 개요)</option>
+                <option value="deep_probe">🔍 심층 탐구 (포괄적 분석)</option>
              </select>
              <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-muted-foreground">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
@@ -88,12 +88,12 @@ export default function ResearchPage() {
             {loading ? (
                 <>
                     <Sparkles className="mr-2 h-5 w-5 animate-spin" />
-                    Analyzing...
+                    분석 중...
                 </>
             ) : (
                 <>
                     <Search className="mr-2 h-5 w-5" />
-                    Start Research
+                    조사 시작
                 </>
             )}
           </Button>

@@ -22,7 +22,7 @@ export async function quickScanNode(state: ResearchState) {
 
   return {
     results: searchResults.results,
-    report: searchResults.answer || "No summary available.",
+    report: searchResults.answer || "요약 내용을 찾을 수 없습니다.",
     citations: newCitations,
   };
 }

@@ -36,7 +36,7 @@ export function ReportViewer({ report, citations }: ReportViewerProps) {
       
       {citations && citations.length > 0 && (
         <div className="mt-12 border-t border-border pt-8">
-          <h2 className="text-2xl font-bold mb-4 text-foreground">Sources & Citations</h2>
+          <h2 className="text-2xl font-bold mb-4 text-foreground">출처 및 인용</h2>
           <ul className="space-y-4">
             {citations.map((citation) => (
               <li key={citation.id} className="text-sm">
@@ -49,7 +49,7 @@ export function ReportViewer({ report, citations }: ReportViewerProps) {
                   {citation.title}
                 </a>
                 <p className="text-muted-foreground mt-1">{citation.snippet}</p>
-                <span className="text-xs text-muted-foreground/60">Accessed on: {new Date(citation.accessDate).toLocaleDateString()}</span>
+                <span className="text-xs text-muted-foreground/60">접속일: {new Date(citation.accessDate).toLocaleDateString()}</span>
               </li>
             ))}
           </ul>
