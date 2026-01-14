@@ -10,23 +10,23 @@ export function StatusDashboard({ mode, currentStep, plan, status }: StatusDashb
   const progress = totalSteps > 0 ? ((currentStep || 0) / totalSteps) * 100 : 0;
 
   return (
-    <div className="bg-gray-50 p-6 rounded-xl border mb-8">
+    <div className="bg-card text-card-foreground p-6 rounded-xl border border-border mb-8 shadow-sm">
       <div className="flex justify-between items-center mb-4">
         <div>
-          <h3 className="text-lg font-bold capitalize">{mode.replace('_', ' ')} Mode</h3>
-          <p className="text-sm text-gray-500">Status: <span className="text-blue-600 font-medium">{status}</span></p>
+          <h3 className="text-lg font-bold capitalize">{mode === 'quick_scan' ? '빠른 스캔' : '심층 탐구'} 모드</h3>
+          <p className="text-sm text-muted-foreground">상태: <span className="text-primary font-medium">{status === 'Completed' ? '완료됨' : '진행 중'}</span></p>
         </div>
         {totalSteps > 0 && (
           <div className="text-right">
-            <span className="text-sm font-bold">{currentStep} / {totalSteps} Steps</span>
+            <span className="text-sm font-bold">{currentStep} / {totalSteps} 단계</span>
           </div>
         )}
       </div>
 
       {totalSteps > 0 && (
-        <div className="w-full bg-gray-200 rounded-full h-2.5 mb-6">
+        <div className="w-full bg-secondary rounded-full h-2.5 mb-6">
           <div 
-            className="bg-blue-600 h-2.5 rounded-full transition-all duration-500" 
+            className="bg-primary h-2.5 rounded-full transition-all duration-500" 
             style={{ width: `${progress}%` }}
           ></div>
         </div>
@@ -36,8 +36,8 @@ export function StatusDashboard({ mode, currentStep, plan, status }: StatusDashb
         <div className="space-y-2">
           {plan.map((step, index) => (
             <div key={index} className="flex items-center gap-3">
-              <div className={`w-2 h-2 rounded-full ${index < (currentStep || 0) ? 'bg-green-500' : index === currentStep ? 'bg-blue-500 animate-pulse' : 'bg-gray-300'}`}></div>
-              <span className={`text-sm ${index === currentStep ? 'font-bold' : 'text-gray-600'}`}>{step}</span>
+              <div className={`w-2 h-2 rounded-full flex-shrink-0 ${index < (currentStep || 0) ? 'bg-emerald-500' : index === currentStep ? 'bg-primary animate-pulse' : 'bg-muted-foreground/30'}`}></div>
+              <span className={`text-sm ${index === currentStep ? 'font-bold text-foreground' : 'text-muted-foreground'}`}>{step}</span>
             </div>
           ))}
         </div>

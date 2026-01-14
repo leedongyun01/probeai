@@ -91,6 +91,7 @@
 - **FR-AG-001**: Agents MUST [Autonomy rule: e.g., "execute multi-step research autonomously"]
 - **FR-AG-002**: System MUST [Verifiability rule: e.g., "map every claim to a source citation"]
 - **FR-AG-003**: System MUST [Synthesis rule: e.g., "generate Mermaid charts for structural data"]
+- **FR-AG-004**: UI/UX MUST adhere to the "Mission Control" Design System (`docs/design-system.md`).
 
 *Example of marking unclear requirements:*
 

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProbeAI - Mission Control</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0F172A; color: #E2E8F0; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(148, 163, 184, 0.1); }
+        .blinking-cursor::after { content: '|'; animation: blink 1s step-end infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+    </style>
+</head>
+<body class="h-screen flex overflow-hidden text-sm">
+
+    <!-- SIDEBAR -->
+    <aside class="w-16 flex flex-col items-center py-6 border-r border-slate-800 bg-slate-900 z-20">
+        <div class="mb-8 text-blue-500 font-bold text-xl">P</div>
+        <nav class="flex-1 space-y-6 w-full flex flex-col items-center">
+            <button class="p-2 rounded hover:bg-slate-800 text-slate-400 hover:text-white transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg></button>
+            <button class="p-2 rounded hover:bg-slate-800 text-blue-500 bg-blue-500/10 transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg></button>
+            <button class="p-2 rounded hover:bg-slate-800 text-slate-400 hover:text-white transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg></button>
+        </nav>
+        <div class="text-xs text-slate-500 font-mono">v1.0</div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 flex flex-col relative">
+        
+        <!-- HEADER -->
+        <header class="h-14 border-b border-slate-800 flex items-center justify-between px-6 bg-slate-900/50">
+            <div class="flex items-center gap-4">
+                <span class="font-bold tracking-tight text-slate-200">MISSION CONTROL</span>
+                <span class="px-2 py-0.5 rounded text-xs bg-green-500/10 text-green-500 border border-green-500/20 font-mono">ONLINE</span>
+            </div>
+            <div class="flex items-center gap-4 text-xs text-slate-400 font-mono">
+                <div>CPU: <span class="text-slate-200">12%</span></div>
+                <div>MEM: <span class="text-slate-200">2.4GB</span></div>
+                <div>API: <span class="text-green-400">CONNECTED</span></div>
+            </div>
+        </header>
+
+        <!-- DASHBOARD GRID -->
+        <div class="flex-1 p-4 grid grid-cols-12 grid-rows-6 gap-4 overflow-hidden">
+            
+            <!-- PANEL 1: SEARCH INPUT (Top Left) -->
+            <div class="col-span-12 md:col-span-8 row-span-1 glass rounded-lg p-4 flex flex-col justify-center">
+                <div class="flex gap-4">
+                    <div class="flex-1 relative">
+                        <input type="text" id="cmd-input" class="w-full bg-slate-800/50 border border-slate-700 rounded px-4 py-2 text-white focus:outline-none focus:border-blue-500 font-mono" placeholder="Input research directive...">
+                        <div class="absolute right-3 top-2.5 text-xs text-slate-500">ENTER to execute</div>
+                    </div>
+                    <button onclick="execute()" class="bg-blue-600 hover:bg-blue-500 text-white px-6 rounded font-semibold text-xs tracking-wider uppercase transition-colors">Initialize</button>
+                </div>
+            </div>
+
+            <!-- PANEL 2: PLANNER TREE (Top Right) -->
+            <div class="col-span-12 md:col-span-4 row-span-3 glass rounded-lg p-4 flex flex-col">
+                <h3 class="text-xs font-bold text-slate-400 uppercase mb-3 flex justify-between">
+                    <span>Operation Plan</span>
+                    <span class="text-blue-400">AUTO-PILOT</span>
+                </h3>
+                <div id="plan-tree" class="flex-1 font-mono text-xs space-y-2 overflow-y-auto text-slate-400">
+                    <div class="text-slate-600 italic">// Awaiting directive...</div>
+                </div>
+            </div>
+
+            <!-- PANEL 3: LIVE REPORT (Middle Left) -->
+            <div class="col-span-12 md:col-span-8 row-span-4 glass rounded-lg p-6 overflow-y-auto relative">
+                <h3 class="text-xs font-bold text-slate-400 uppercase mb-4 sticky top-0 bg-[#141d2e] pb-2 z-10 border-b border-slate-800 w-full">Output Buffer</h3>
+                <div id="report-content" class="prose prose-invert prose-sm max-w-none">
+                    <div class="flex items-center justify-center h-40 text-slate-600">
+                        No active session data.
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL 4: SOURCE FEED (Bottom Right) -->
+            <div class="col-span-12 md:col-span-4 row-span-3 glass rounded-lg p-4 flex flex-col">
+                <h3 class="text-xs font-bold text-slate-400 uppercase mb-3">Intelligence Feed</h3>
+                <div id="source-feed" class="flex-1 space-y-2 overflow-y-auto font-mono text-xs">
+                    <!-- Feed items will go here -->
+                </div>
+            </div>
+
+            <!-- PANEL 5: TERMINAL LOG (Bottom Overlay) -->
+            <div class="col-span-12 md:col-span-8 row-span-1 glass rounded-lg p-3 font-mono text-xs text-green-400 overflow-hidden flex flex-col-reverse">
+                <div id="terminal-log">
+                    <span class="text-slate-500">$ system ready.</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function log(msg, type='info') {
+            const term = document.getElementById('terminal-log');
+            const colors = { info: 'text-slate-300', success: 'text-green-400', warn: 'text-yellow-400' };
+            const time = new Date().toLocaleTimeString('en-US', {hour12: false});
+            term.innerHTML = `<div><span class="text-slate-600">[${time}]</span> <span class="${colors[type]}">${msg}</span></div>` + term.innerHTML;
+        }
+
+        function addSource(url, status) {
+            const feed = document.getElementById('source-feed');
+            const div = document.createElement('div');
+            div.className = "flex justify-between items-center p-2 bg-slate-800/50 rounded border-l-2 border-blue-500 animate-pulse";
+            div.innerHTML = `<span class="truncate w-2/3 text-slate-300">${url}</span> <span class="text-blue-400">${status}</span>`;
+            feed.prepend(div);
+            setTimeout(() => div.classList.remove('animate-pulse'), 1000);
+        }
+
+        function updatePlan(step) {
+            const tree = document.getElementById('plan-tree');
+            if (step === 0) tree.innerHTML = ''; 
+            
+            const item = document.createElement('div');
+            item.className = "pl-2 border-l border-slate-700 text-slate-300";
+            item.innerHTML = `> ${step}`;
+            tree.appendChild(item);
+        }
+
+        function execute() {
+            const query = document.getElementById('cmd-input').value;
+            if (!query) return;
+
+            // Reset
+            document.getElementById('report-content').innerHTML = '<div class="blinking-cursor text-blue-400">Processing stream initialized...</div>';
+            document.getElementById('plan-tree').innerHTML = '';
+            document.getElementById('source-feed').innerHTML = '';
+
+            log(`Initiating research protocol: "${query}"`, 'success');
+            
+            let progress = 0;
+            const steps = [
+                { t: 500,  action: () => { updatePlan("Phase 1: Query Analysis"); log("Analyzer agent active"); } },
+                { t: 1500, action: () => { updatePlan("Phase 2: Strategy Formulation"); log("Generating search vectors..."); } },
+                { t: 2500, action: () => { 
+                    updatePlan("Phase 3: Data Acquisition"); 
+                    addSource("techcrunch.com/2026/ai-trends", "200 OK");
+                    addSource("nature.com/articles/s41586", "200 OK"); 
+                }},
+                { t: 4000, action: () => { 
+                    updatePlan("Phase 4: Synthesis"); 
+                    log("Compiling structured data...");
+                    document.getElementById('report-content').innerHTML = `
+                        <h1 class="text-xl font-bold text-white mb-4">Analysis Report: ${query}</h1>
+                        <p class="text-slate-300 mb-2">Primary analysis indicates a significant shift in market dynamics regarding this topic.</p>
+                        <div class="bg-slate-800 p-4 rounded my-4 font-mono text-xs">
+                            DATA TABLE GENERATED:<br>
+                            ---------------------<br>
+                            Metric A  |  Growth  |  +45%<br>
+                            Metric B  |  Risk    |  Low<br>
+                        </div>
+                        <p class="text-slate-300">Detailed breakdown suggests strict correlation between variable X and Y.</p>
+                    `;
+                }},
+                { t: 5000, action: () => { log("Task completed successfully.", 'success'); } }
+            ];
+
+            steps.forEach(s => setTimeout(s.action, s.t));
+        }
+    </script>
+</body>
+</html>

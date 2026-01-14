@@ -32,6 +32,8 @@ export async function summarizerNode(state: ResearchState) {
 
   return {
     summary: response.content as string,
-    messages: messages.slice(-2), // Keep only last 2
+    // Note: To properly implement context window management, we should delete old messages here.
+    // However, returning messages.slice(-2) in LangGraph appends them rather than replacing.
+    // For now, we only update the summary. Future work: Implement RemoveMessage logic.
   };
 }

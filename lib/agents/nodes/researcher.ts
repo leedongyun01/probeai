@@ -1,6 +1,6 @@
 import { ResearchState } from "../state";
-import { search } from "@/lib/services/tavily";
-import { SourceCitation, SearchResult } from "@/lib/schema/research";
+import { search, TavilySearchResult } from "@/lib/services/tavily";
+import { SourceCitation } from "@/lib/schema/research";
 
 export async function researcherNode(state: ResearchState) {
   let query = "";
@@ -11,12 +11,12 @@ export async function researcherNode(state: ResearchState) {
     query = typeof lastMessage.content === 'string' ? lastMessage.content : '';
   }
   
-  const searchResults = await search(query, {
+  const searchResults: TavilySearchResult = await search(query, {
     searchDepth: state.mode === 'deep_probe' ? 'advanced' : 'basic',
     maxResults: 5,
   });
 
-  const newCitations: SourceCitation[] = searchResults.results.map((r: SearchResult) => ({
+  const newCitations: SourceCitation[] = searchResults.results.map((r) => ({
     id: Buffer.from(r.url).toString('base64'),
     url: r.url,
     title: r.title,
