@@ -1,6 +1,6 @@
 import { ResearchState } from "../state";
 import { search } from "@/lib/services/tavily";
-import { SourceCitation, SearchResult } from "@/lib/schema/research";
+import { SourceCitation } from "@/lib/schema/research";
 
 export async function quickScanNode(state: ResearchState) {
   const lastMessage = state.messages[state.messages.length - 1];
@@ -13,6 +13,7 @@ export async function quickScanNode(state: ResearchState) {
     includeAnswer: true,
   });
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const newCitations: SourceCitation[] = searchResults.results.map((r: any) => ({
     id: Buffer.from(r.url).toString('base64'),
     url: r.url,
