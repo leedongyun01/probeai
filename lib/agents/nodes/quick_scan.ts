@@ -12,7 +12,7 @@ export async function quickScanNode(state: ResearchState) {
     includeAnswer: true,
   });
 
-  const newCitations: SourceCitation[] = searchResults.results.map((r: SearchResult) => ({
+  const newCitations: SourceCitation[] = searchResults.results.map((r: any) => ({
     id: Buffer.from(r.url).toString('base64'),
     url: r.url,
     title: r.title,

@@ -1,8 +1,13 @@
 import { useState, useEffect } from 'react';
+import { SourceCitation } from '@/lib/schema/research';
 
 interface ResearchData {
   report?: string;
   status?: string;
+  mode?: string;
+  currentStep?: number;
+  plan?: string[];
+  citations?: SourceCitation[];
   [key: string]: unknown;
 }
 

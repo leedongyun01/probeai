@@ -9,14 +9,14 @@ export default function SessionPage({ params }: { params: Promise<{ sessionId: s
   const { sessionId } = use(params);
   const { data, error } = useResearchStream(sessionId);
 
-  if (error) return <div className="p-8 text-center text-red-500">Error: {error}</div>;
-  if (!data) return <div className="p-8 text-center">Connecting to research session...</div>;
+  if (error) return <div className="p-8 text-center text-destructive">Error: {error}</div>;
+  if (!data) return <div className="p-8 text-center text-muted-foreground animate-pulse">Connecting to research session...</div>;
 
   return (
-    <div className="max-w-4xl mx-auto p-8">
-      <header className="mb-8 border-b pb-4">
-        <h1 className="text-2xl font-bold text-gray-800">Research Session</h1>
-        <p className="text-gray-500">Session ID: {sessionId}</p>
+    <div className="space-y-8 animate-in fade-in duration-500">
+      <header className="border-b border-border pb-6">
+        <h1 className="text-3xl font-bold text-foreground">Research Report</h1>
+        <p className="text-sm text-muted-foreground mt-1 font-mono">ID: {sessionId}</p>
       </header>
 
       <StatusDashboard 
