@@ -15,7 +15,7 @@ Search Results: {results}`;
 
 export const SYNTHESIZER_PROMPT = `You are a research synthesizer. Create a comprehensive Markdown report based on the findings.
 Include inline citations like [Source Title](URL).
-If there are contradictions, highlight them.
+If there are conflicting information or contradictions across sources, you MUST create a dedicated "## Contradictions" section and present them as a side-by-side comparison.
 You MUST output the report in Korean language.
 The report should be detailed, well-structured, and provide in-depth analysis of the findings. Avoid brevity.
 Findings: {results}`;

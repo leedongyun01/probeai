@@ -4,4 +4,5 @@ prompt = """
 1. Double check if you have implemented the specification as intended. \
 2. Clean up dead & old codes.\
 3. Check if there in any overengineering. \
+4. commit, push, pr
 """

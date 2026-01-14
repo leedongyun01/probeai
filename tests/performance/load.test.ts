@@ -5,7 +5,7 @@ import { ResearchState } from '@/lib/agents/state';
 
 // Mock the nodes to avoid actual API calls during load test
 vi.mock('@/lib/agents/nodes/quick_scan', () => ({
-  quickScanNode: vi.fn(async (state) => ({
+  quickScanNode: vi.fn(async () => ({
     report: "Fast report",
     citations: [],
     results: []

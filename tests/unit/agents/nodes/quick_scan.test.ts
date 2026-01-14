@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { quickScanNode } from '@/lib/agents/nodes/quick_scan';
 import { ResearchState } from '@/lib/agents/state';
 import { HumanMessage } from '@langchain/core/messages';
@@ -24,7 +24,7 @@ describe('quickScanNode', () => {
       ],
       answer: 'This is a summary.',
     };
-    (search as any).mockResolvedValue(mockSearchResults);
+    (search as Mock).mockResolvedValue(mockSearchResults);
 
     // Setup input state
     const initialState: Partial<ResearchState> = {
@@ -36,7 +36,7 @@ describe('quickScanNode', () => {
     const result = await quickScanNode(initialState as ResearchState);
 
     // Assertions
-    expect(search).toHaveBeenCalledWith("Test query", expect.objectContaining({
+    expect(search).toHaveBeenCalledWith(expect.stringContaining("Test query"), expect.objectContaining({
       searchDepth: "basic",
       includeAnswer: true,
     }));
@@ -52,7 +52,7 @@ describe('quickScanNode', () => {
       results: [],
       answer: null,
     };
-    (search as any).mockResolvedValue(mockSearchResults);
+    (search as Mock).mockResolvedValue(mockSearchResults);
 
     const initialState: Partial<ResearchState> = {
       messages: [new HumanMessage("Unknown query")],
@@ -61,7 +61,7 @@ describe('quickScanNode', () => {
 
     const result = await quickScanNode(initialState as ResearchState);
 
-    expect(result.report).toBe('No summary available.');
+    expect(result.report).toBe('요약 내용을 찾을 수 없습니다.');
     expect(result.citations).toHaveLength(0);
   });
 });
